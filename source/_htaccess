@@ -1,0 +1,20 @@
+
+# 
+# # If the request isn't a folder, and there's a .py that matches
+# # the last part of the path, redirect to that.
+# # Ex: /a/b/something/ --> a/b/something.py
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.py -f
+# RewriteRule ^(.*)$ $1.py [L]
+# 
+# # If the request isn't a folder, and there's an .html that matches
+# # the last part of the path, redirect to that.
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.html -f
+# RewriteRule ^(.+[^/]) $1.html [L]
+# 
+# # If the request doesn't include a dot and doesn't have a slash at the end,
+# # add a slash and redirect
+# # Ex: /a/b/someresource --> /a/b/someresource/
+# # Ex: /a/b/someresource.ext --> no change, there's an extension
+# RewriteRule ^([^.]+[^/])$ $1/ [R=permanent,L]

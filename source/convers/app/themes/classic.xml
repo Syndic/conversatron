@@ -1,0 +1,35 @@
+<castle:template name="index_topics_start">
+<table width="66%" border=0 cellspacing=0 cellpadding=2>
+<tr>
+<td align="center" bgcolor="{indexoutercolor}"><font size="-1" face="Verdana, Helvetica"><b>Current Topics</b></font></td>
+</tr>
+
+<tr>
+<td bgcolor="{indexoutercolor}">
+<table border=0 cellspacing=1 cellpadding=0 width="100%"><tr><td bgcolor="{indexoutercolor}">
+<table cellspacing=0 cellpadding=2 border=0 width="100%">
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+<tr><td bgcolor="{indexoutercolor}" colspan=3 align=right><a href="/archive/"><font size="3" face="Georgia"><img src="/img/9arrow.gif" width="5" height="9" alt="" border="0"><b>Archives</b></font></a></td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</castle:template>
+
+
+<castle:template name="index_date">
+<tr><td bgcolor="{indexoutercolor}" colspan=3 align=center><font size="3"><b>{day}</b></font></td></tr>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<tr bgcolor="{indexcolor}">
+<td><a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a> {followup}</td>
+
+<td>{row.count} {star}</td>
+
+<td><font size="-1">{row.time}</font>{archive}</td>
+
+</tr>
+</castle:template>

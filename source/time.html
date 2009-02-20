@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Current Time</title>
+<script src="display.js"></script>
+<script src="request2.js"></script>
+<script>
+function get_time(button_name, time_name, cached){
+	Display.disable(button_name)
+	
+	XHR.get({
+		url: "timer.cgi",
+		cache: cached,
+		callback: function(result){
+			var s = "";
+			if (result.status==HttpStatus.OK)
+				s = result.responseText
+			else
+				s = "An error occurred (" + result.status.toString() + ")."
+				
+			Display.text(time_name, s)
+			Display.enable(button_name)
+		}
+	});
+}
+</script>
+</head>
+
+<body>
+<h2>Demo of XmlHttpRequest with caching forced off for IE.</h2>
+
+<h3>No IE handling, may be cached by browser</h3>
+<div style="border: 1px black dotted;padding: 5px;">
+Request time from server with the same URL.
+<i>IE may cache the results and always show the first time.</i>
+<div>
+<button onclick='get_time("button2","current-time2")' id="button2">Get time</button>
+<span id="current-time2">No time retreived</span>
+</div>
+</div>
+<br>
+
+<h3>IE forced not to cache results</h3>
+<div style="border: 1px black dotted;padding: 5px;">
+Request time from server with unique URLs to prevent caching.
+<i>IE should get new times every click.</i>
+<div>
+<button onclick='get_time("button1","current-time", Cache.GetNoCache)' id="button1">Get time</button>
+<span id="current-time">No time retreived</span>
+</div>
+</div>
+
+<h3>URL</h3>
+<div id="url"></div>
+
+</body>
+</html>

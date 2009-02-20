@@ -1,0 +1,205 @@
+<castle:template name="index">
+{?standard_head}
+<div align="center">
+{mainlogo}<br>
+<br>
+<b>{slogan}</b>
+<br><br>
+{theme.PrintLinks()}
+<br>
+
+{?index_topics_start}
+{theme.PrintThreads()}
+{?index_topics_end}
+</div>
+
+<br>
+
+<table width="80%" align="center">
+<tr>
+<td>
+{?new_topic}
+</td>
+</tr>
+</table>
+
+
+<table width="80%">
+<tr>
+<td>
+<br><br>
+{?copyright}
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+</castle:template>
+
+
+
+<castle:template name="index_topics_start">
+<table width="80%">
+<tr>
+<td colspan=4 style="border-bottom: 1px #39679a solid">
+<font size="+1" face="Georgia" color="{header_color}"><b>Latest Topics</b></font>
+</td>
+</tr>
+</castle:template>
+
+
+<castle:template name="index_date">
+<tr>
+<td></td>
+<td colspan=3 style="border-bottom: 1px #39679a solid">
+<font size="+1" face="Georgia" color="{header_color}"><br>{day}</font>
+</td>
+</tr>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<tr>
+<td>{star}</td>
+<td><font size="3"><a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a></font></td>
+<td><font size="2">Length: {row.count}</font></td>
+<td><font size="2">{row.time}{followup}{archive}</font></td>
+</tr>
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+</table>
+</castle:template>
+
+<castle:template name="thread_navigation">
+<p align="center">
+<a href="convers.py?prev={page.thread.id}">{prevbutton}</a>{buttonseperator}<a href="{homepage}">{indexbutton}</a>{buttonseperator}<a href="convers.py?next={page.thread.id}">{nextbutton}</a>
+</p>
+</castle:template>
+
+
+<castle:template name="archive_navigation">
+<br>
+<p align="center"><font size=4><a href="/archive/archives{archindex}.html">Back to Archive Index</a></font></p>
+</castle:template>
+
+
+<!-- This template appears between the first post in a thread (usually an asker) and the responses -->
+
+<castle:template name="entry_responses">
+<div class="lined">
+<font size="+1" face="Georgia" color="{header_color}"><b>Responses</b></font>
+</div>
+<br clear="all">
+</castle:template>
+
+
+<!-- Basic Entry template, used for the non-table layout -->
+<castle:template name="entry">
+{shadow:<font color="#666666">}
+{urlstart}<img src="{image}" width="80" height="100" border="0" align="{side}" hspace="5" alt="">{urlstop}
+
+<b>{name}</b> {buttonStr}<br>
+{text}<br clear="all">
+{userIDStr}
+{shadow:</font>}
+<br>{not (isfirst or islast):{post_sep}}<br>
+</castle:template>
+
+
+<castle:template name="topic_rating">
+<form method="post" action="rate.py" name="rateform">
+<input type="hidden" name="topic" value="{thread.id}">
+<input type="hidden" name="next" value="n">
+
+<table>
+<tr>
+<td class="lined" colspan=3><font size="2" face="Georgia" color="{header_color}"><b>Rate This Thread</b></font></td>
+</tr>
+
+<tr>
+<td valign=bottom>Not Funny</td>
+<td align=center>
+<img src="/img/2000-rating.gif" width=108 height=10><br>
+
+{page.ShowRatingDots()}
+</td>
+<td valign=bottom>Funny</td>
+</tr>
+<tr><td colspan=3 align=center>
+<br>
+<input name=rate type="submit" value="Rate!">&nbsp;
+<input name=ratenext type="submit" value="Rate, view next" onclick="document.rateform.next.value='y';">
+</td></tr>
+</table>
+</form>
+
+</castle:template>
+
+
+<castle:template name="new_topic">
+<div class="lined">
+<font size="+1" face="Georgia" color="{header_color}"><b>Start a New Topic</b></font>
+</div>
+
+<form method="post" action="newtopic.py" onkeypress="checkkey2()">
+<table>
+<tr>
+<td>
+<b>Title:</b>
+</td>
+
+<td>
+<input name="subject" type="text" size="32" maxlength="32">
+</td>
+</tr>
+
+<tr>
+<td colspan=2>
+<b>Please elaborate on your question or discussion topic:</b>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+<textarea name="body" rows="10" cols="60" wrap="soft" onkeydown="CtrlEnterSubmit()"></textarea>
+</td>
+</tr>
+
+<tr>
+<td><img src="/img/2000-rate.gif" align="absmiddle"></td>
+<td>
+<input type="submit" value="Post Your Topic"> Remember to proofread!
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+<br>
+{page.ShowFromAskee()}
+</td>
+</tr>
+</table>
+</form>
+</castle:template>
+
+
+
+<castle:template name="css">
+<style>
+body \{
+	\}
+	
+.lined \{
+	border-bottom: 1px #39679a solid;
+	\}
+	
+div.lined \{
+	padding-bottom: 1px;
+	\}
+</style>
+</castle:template>

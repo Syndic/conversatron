@@ -1,0 +1,5 @@
+<castle:template name="index">
+<body bgcolor="#00007f">
+<center><a href="/prefs.py"><img src="/img/lunaxp/bsod.gif" border=0></a></center>
+</body>
+</castle:template>

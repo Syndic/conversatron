@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>DOM Tests</title>
+
+<style>
+div.test { border: 1px dotted red; }
+</style>
+
+<script src="/display.js"></script>
+
+<script>
+Function.prototype.partial = function(){
+	var method = this;
+	var args = arguments;
+	return function(){
+		var params = [];
+		params.add(args);
+		params.add(arguments);
+		return method.apply(null, params)
+	}
+}
+
+
+</script>
+</head>
+
+<div id="main">
+<div onclick="DOM.before(this, 'NEW NODE')" class="test">ABC</div>
+<div onclick="DOM.before(this, 'NEW NODE')" class="test">DEF</div>
+<div onclick="DOM.before(this, 'NEW NODE','span')" class="test">GHI</div>
+</div>
+
+<body>
+</body>
+</html>

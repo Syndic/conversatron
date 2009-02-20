@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Get Test</title>
+<script src="goo.js"></script>
+
+<style>
+#status {
+	background: #666;
+	color: white;
+	}
+</style>
+</head>
+
+<body>
+<form name="test" onsubmit="request_search(test.search.value);return false;">
+Look up: 
+<input name="search" type=text> 
+<input type=button name="Go" value="Search" onclick="request_search(test.search.value);return false;">
+<br>
+<textarea name="results" id="results" rows=5 cols=80></textarea>
+</form>
+<hr>
+<div style="display:none"id="status">Loading...</div>
+<div id="blob"></div>
+</body>
+</html>

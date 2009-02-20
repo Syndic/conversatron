@@ -1,0 +1,53 @@
+<style>
+td.name {
+	font-weight: bold;
+	text-align: right;
+	}
+</style>
+
+<form method="post" action="{pagename}" name="userform">
+<input type="hidden" name="id" value="{theUser.id}">
+<br>
+<table>
+<tr>
+	<td></td>
+	<td><b>{theUser.name}</b></td>
+</tr>
+
+<tr>
+	<td class=name>Gender:</td>
+	<td>{user_gender}</td>
+</tr>
+
+<tr>
+	<td class=name>User Type:</td>
+	<td>{select(user_type)}</td>
+</tr>
+
+<tr>
+	<td class=name>Banned:</td>
+	<td><input name="banned" type="checkbox"{user_banned}></td>
+</tr>
+
+<tr>
+	<td class=name>Picture:</td>
+	<td><input name="picture" type="text" size=20 value="{user_picture}"></td>
+</tr>
+
+{user_picture:{<tr>
+	<td></td>
+	<td><img src="/users/{user_picture}"width=80 height=100 ></td>
+</tr>}}
+
+<tr>
+	<td class=name>URL:</td>
+	<td><input name="url" type="text" value="{user_url}" size=40></td>
+</tr>
+
+{user.IsAdmin():{<tr><td></td>
+<td><input type="submit" name="update_user" value="Update User"></td>
+</tr>}}
+
+{blank_row}
+
+<tr><td class=name>Last IP:</td><td>{IP}</td></tr>

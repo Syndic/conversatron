@@ -1,0 +1,192 @@
+<castle:template name="index">
+{?standard_head}
+<p align="center">
+{mainlogo}<br>
+{slogan}
+<br><br>
+{theme.PrintLinks()}
+<br>
+
+{?index_topics_start}
+{theme.PrintThreads()}
+{?index_topics_end}
+</p>
+
+{?copyright}
+
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="css">
+<style>
+body, td, th \{
+	font-family: Lucida Grande, sans-serif;
+	font-size: 14px;
+	\}
+</style>
+</castle:template>
+
+
+<castle:template name="topic">
+{?standard_head}
+<a href="{minilogourl}">{minilogo}</a> Topic: <b>{page.thread.subject}</b>
+<br clear="all">
+<br>
+
+{theme.PrintThreadEntries()}
+<br>
+{archindex==None:{?thread_navigation}}
+{archindex!=None:{?archive_navigation}}
+<br>
+
+{page.ShowWriterStuff()}
+
+{?copyright}
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="index_topics_start">
+
+<table cellpadding=0 cellspacing=0 border=0 width="100%">
+<tr>
+<td><img src="/img/aquaui/title-left.gif" height="24" width="87"></td>
+
+<td background="/img/aquaui/title-bg.gif" align=center nowrap width="100%"><img src="/img/aquaui/title-icon.gif" height="24" width="25" align=absmiddle><b>Threads</b></td>
+
+<td><img src="/img/aquaui/title-right.gif" height="24" width="54"></td>
+</tr>
+</table>
+
+
+<table cellpadding=0 cellspacing=0 border=0 width="100%">
+<tr>
+<td background="/img/aquaui/body-leftshadow.gif"><img src="/img/aquaui/body-leftshadow.gif"></td>
+	
+<td width="100%">
+<br>
+<center><font size="-1" color="{daycolor}"><b>Current</b></font></center>
+<table align=center>
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+</table>
+
+<hr>
+
+<div align=center>{?new_topic}</div>
+<br>
+<br>
+</td>
+
+<td background="/img/aquaui/body-rightshadow.gif"><img src="/img/aquaui/body-rightshadow.gif"></td>
+</tr>
+</table>
+
+<table cellpadding=0 cellspacing=0 border=0 width="100%"><tr>
+<td><img src="/img/aquaui/bottom-left.gif" width=39 height=20></td>
+<td background="/img/aquaui/bottom-shadow.gif" width="100%"></td>
+<td><img src="/img/aquaui/bottom-right.gif" width=36 height=20></td>
+</tr></table>
+</castle:template>
+
+
+<castle:template name="index_date">
+<tr><td bgcolor="{indexoutercolor}" colspan=3 align=center><br><font size="-1" color="{daycolor}"><b>{day}</b></font></td></tr>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<tr bgcolor="{indexcolor}">
+<td><a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a> {followup}</td>
+
+<td>{row.count} {star}</td>
+
+<td><font size="-1">{row.time}</font>{archive}</td>
+
+</tr>
+</castle:template>
+
+<castle:template name="copyright">
+<p align="right"><font size="-2" face="Arial">Images &copy; their respective owners. Text &copy; 1999-{currentyear} The Conversatron. For entertainment purposes only.<br>
+Theme by <b>Magenta</b>.</font></p>
+</castle:template>
+
+
+<castle:template name="entryl">
+{?entry_title}
+{?entry_cell_image}
+{?entry_cell_spacer}
+{?entry_cell_text}
+{?entry_cell_spacer}
+{?entry_butt}
+</castle:template>
+
+
+<castle:template name="entryr">
+{?entry_title}
+{?entry_cell_spacer}
+{?entry_cell_text}
+{?entry_cell_spacer}
+{?entry_cell_image}
+{?entry_butt}
+</castle:template>
+
+
+<castle:template name="entry_title">
+<table cellpadding=0 cellspacing=0 border=0>
+
+<tr>
+<td colspan=6>
+	<table cellpadding=0 cellspacing=0 border=0 width="100%"><tr>
+<td><img src="/img/aquaui/title-left.gif" height="24" width="87"></td>
+<td background="/img/aquaui/title-bg.gif" align=center nowrap width="100%"The one><img src="/img/aquaui/title-icon.gif" height="24" width="25" align=absmiddle><b>{name}</b></td>
+<td><img src="/img/aquaui/title-right.gif" height="24" width="54"></td>
+	</tr></table>
+</td>
+</tr>
+
+<tr>
+<td background="/img/aquaui/body-leftshadow.gif"><img src="/img/aquaui/body-leftshadow.gif"></td>
+</castle:template>
+
+
+<castle:template name="entry_butt">
+<td background="/img/aquaui/body-rightshadow.gif"><img src="/img/aquaui/body-rightshadow.gif"></td>
+</tr>
+
+<tr>
+<td colspan=6><table cellpadding=0 cellspacing=0 border=0 width="100%"><tr>
+<td><img src="/img/aquaui/bottom-left.gif" width=39 height=20></td>
+<td background="/img/aquaui/bottom-shadow.gif"width="100%"></td>
+<td><img src="/img/aquaui/bottom-right.gif" width=36 height=20></td>
+</tr></table></td>
+</tr>
+
+
+</table>
+{buttonStr}<br>
+{userIDStr}<br><br>
+</castle:template>
+
+
+
+<castle:template name="entry_cell_image">
+<td>{urlstart}<img src="{image}" width=80 height=100 border=0>{urlstop}</td>
+</castle:template>
+
+
+<castle:template name="entry_cell_spacer">
+<td><img src="/img/_.gif" width=10 height=1></td>
+</castle:template>
+
+
+<castle:template name="entry_cell_text">
+<td valign="top" bgcolor="{color}">{text}<br>
+<img src="/img/_.gif" width=250 height=1><br>
+</td>
+</castle:template>

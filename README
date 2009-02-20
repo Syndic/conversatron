@@ -1,4 +1,4 @@
-This repository contains the Python source code to "The Conversatron".
+This repository contains the Python CGI scripts to "The Conversatron".
 
-It is meant to be run as CGI scripts on Apache, on a Unix-like system.
-It was developed using Python 2.ancient, so it may or may not work well on modern (2.5, 2.6) Python versions.
+Copyright (C) 1999-2009 The Powers That Be (TM)
+An Alan Smithee Production

@@ -1,0 +1,11 @@
+<x:form method="post" action="$this">
+<input type="hidden" name="id" value="$id">
+<x:select name="emotion" x:var="self.entry.emotion" />
+On right: <input type="checkbox" name="onright" x:var="self.entry.side" /><br>
+<x:textarea name="body" rows="10" cols="60" wrap="soft" onkeydown="CtrlEnterSubmit()" x:var="self.entry.body" />
+<br>
+
+<input type="submit" name="fix_button" value="Fix It"> Please quickly proofread your reply. Thank you.
+<br><br>
+<input type="submit" name="delete_button" value="Delete Entry">
+</x:form>

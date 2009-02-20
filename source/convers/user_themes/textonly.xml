@@ -1,0 +1,172 @@
+<castle:template name="index">
+{?standard_head}
+<p>
+<b>{site_name}</b><br>
+{slogan}
+</p>
+
+<p><a href="#links">Skip to links</a>.</p>
+
+<p>
+{?index_topics_start}
+{theme.PrintThreads()}
+{?index_topics_end}
+</p>
+
+<p>{?new_topic}</p>
+
+<p><a name="links"></a>
+{theme.PrintLinks()}
+</p>
+
+<p>{?copyright}</p>
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="index_date">
+<br>
+<b>{day}:</b><br>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a>{star}, {row.count} entries, posted at {row.time} {followup} {archive}<br>
+</castle:template>
+
+
+<castle:template name="index_topics_start">
+<b>Current Topics:</b><br>
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+</castle:template>
+
+
+
+
+<castle:template name="topic">
+{?standard_head}
+<a href="{minilogourl}">{minilogo}</a><br>
+
+<p>The Topic: <b>{page.thread.subject}</b></p>
+
+{theme.PrintThreadEntries()}
+<br>
+{archindex==None:{?thread_navigation}}
+{archindex!=None:{?archive_navigation}}
+<br>
+
+{page.ShowWriterStuff()}
+
+{?copyright}
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="thread_navigation">
+<p align="center">
+<a href="convers.py?prev={page.thread.id}">{prevbutton}</a>{buttonseperator}<a href="{homepage}">{indexbutton}</a>{buttonseperator}<a href="convers.py?next={page.thread.id}">{nextbutton}</a>
+</p>
+</castle:template>
+
+
+<castle:template name="archive_navigation">
+<br>
+<p align="center"><font size=4><a href="/archive/archives{archindex}.html">Back to Archive Index</a></font></p>
+</castle:template>
+
+
+<!-- This template appears between the first post in a thread (usually an asker) and the responses -->
+
+<castle:template name="entry_responses">
+<hr>
+<p>Responses:</p>
+</castle:template>
+
+
+<!-- Basic Entry template, used for the non-table layout -->
+<castle:template name="entry">
+<p>
+{shadow:<font color="#666666">}
+{urlstart}<b>{name}</b>{urlstop} (on the {side} side) {buttonStr}<br>
+{text}<br clear="all">
+{userIDStr}
+{shadow:</font>}
+<br>{not isfirst:<hr>}<br>
+</p>
+</castle:template>
+
+
+<castle:template name="new_topic">
+<p><b>Start a new topic</b></p>
+
+<form method="post" action="newtopic.py" onkeypress="checkkey2()">
+Enter a subject for your question:
+<input name="subject" type="text" size="32" maxlength="32"><br>
+<br>
+Next, please elaborate on your question or discussion topic:<br>
+<textarea name="body" rows="8" cols="60" wrap="soft" onkeydown="CtrlEnterSubmit()"></textarea><br>
+
+After completing a quick proofread, click here! <input type="submit" value="Post Topic">
+<br><br>
+{page.ShowFromAskee()}
+</form>
+</castle:template>
+
+
+
+<castle:template name="javascript">
+<script>
+function CtrlEnterSubmit()
+\{
+	if (this.event)
+	\{
+		e = this.event;
+		if ((e.keyCode==13) && (e.ctrlKey==true)) e.srcElement.form.submit();
+	\}
+\}
+
+function checkkey()
+\{
+	if (!window.event) return;
+\	
+	if (window.event.keyCode == '51') window.location='deletesite.py?op=warning'
+\}
+
+function checkkey2()
+\{
+	if (!window.event) return;
+	window.event.cancelBubble = true;
+\}
+</script>
+</castle:template>
+
+
+<castle:template name="css">
+</castle:template>
+
+
+<castle:template name="copyright">
+<p align="right"><font size="-2" face="Arial">Images &copy; their respective owners. Text &copy; 1999-{currentyear} The Conversatron. For entertainment purposes only.</font></p>
+</castle:template>
+
+
+<castle:template name="body"><body {bgcolor:bgcolor="{bgcolor}"} {bgimage:background="{bgimage}"} {bodytext:text="{bodytext}"} {bodylink:link="{bodylink}"} {bodyalink:alink="{bodyalink}"} {bodyvlink:vlink="{bodyvlink}"} disabled_onkeypress="checkkey()"></castle:template>
+
+<castle:template name="standard_head">
+<html>
+<head>
+<title>{title}</title>
+
+<meta name="description" content="{meta_description}">
+<meta name="keywords" content="{meta_keywords}">
+
+{?javascript}
+{?css}
+</head>
+{?body}
+</castle:template>

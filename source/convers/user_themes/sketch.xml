@@ -1,0 +1,322 @@
+<castle:template name="index">
+{?standard_head}
+<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%">
+<tr>
+<td background="/img/sketch/background.gif" width=1><img src="/img/_.gif" width=71 height=1 alt="" /></td>
+<td valign=top>
+
+<div align=center>
+{mainlogo}<br>
+{slogan}
+</div>
+
+<div align=center>{theme.PrintLinks()}</div>
+
+<br>
+
+<div align=center>
+{?box_start}
+{?index_topics_start}
+{theme.PrintThreads()}
+{?index_topics_end}
+{?box_end}
+</div>
+
+<br>
+
+<div align=center>
+{?box_start}
+{?new_topic}
+{?box_end}
+</div>
+
+{?copyright}
+</td></tr></table>
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="topic">
+{?standard_head}
+<table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%">
+<tr><td background="/img/sketch/background.gif" width=1>
+<img src="/img/_.gif" width=71 height=1 alt="" /></td>
+<td valign=top>
+<a href="{minilogourl}">{minilogo}</a><br>
+
+<font size="+2"><b>{page.thread.subject}</b></font>
+<br clear="all">
+<br>
+
+{theme.PrintThreadEntries()}
+<br>
+{archindex==None:{?thread_navigation}}
+{archindex!=None:{?archive_navigation}}
+<br>
+
+{page.ShowWriterStuff()}
+
+{?copyright}
+</td></tr></table>
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="thread_navigation">
+<p align="center">
+<a href="convers.py?prev={page.thread.id}">{prevbutton}</a>{buttonseperator}<a href="{homepage}">{indexbutton}</a>{buttonseperator}<a href="convers.py?next={page.thread.id}">{nextbutton}</a>
+</p>
+</castle:template>
+
+
+<castle:template name="archive_navigation">
+<br>
+<p align="center"><font size=4><a href="/archive/archives{archindex}.html">Back to Archive Index</a></font></p>
+</castle:template>
+
+
+<!-- This template appears between the first post in a thread (usually an asker) and the responses -->
+
+<castle:template name="entry_responses"><font size="+2"><hr>Responses:</font><br><br></castle:template>
+
+
+<castle:template name="entry_picture">
+<table border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td><img src="/img/sketch/pic-top-left.gif" width=20 height=20 alt="" /></td>
+<td><img src="/img/sketch/pic-top.gif" width=80 height=20 alt="" /></td>
+<td><img src="/img/sketch/pic-top-right.gif" width=39 height=20 alt="" /></td>
+</tr><tr>
+<td><img src="/img/sketch/pic-left.gif" width=20 height=100 alt="" /></td>
+<!-- ICON --><td>{urlstart}<img src="{image}" width=80 height=100 border=0>{urlstop}</td>
+<td><img src="/img/sketch/pic-right.gif" width=39 height=100 alt="" /></td>
+</tr><tr>
+<td><img src="/img/sketch/pic-bottom-left.gif" width=20 height=47 alt="" /></td>
+<td><img src="/img/sketch/pic-bottom.gif" width=80 height=47 alt="" /></td>
+<td><img src="/img/sketch/pic-bottom-right.gif" width=39 height=47 alt="" /></td>
+</tr>
+</table>
+</castle:template>
+
+
+<castle:template name="entry_text">
+<table border=0 cellpadding=0 cellspacing=0>
+<tr><td colspan=3><img src="/img/_.gif" width=1 height=5 alt="" /></td></tr>
+<tr><td><img src="/img/sketch/text-top-left.gif" width=19 height=17 alt="" /></td>
+<td background="/img/sketch/text-top.gif"><img src="/img/sketch/text-top.gif" width=2 height=17 alt="" /></td>
+<td><img src="/img/sketch/text-top-right.gif" width=37 height=17 alt="" /></td>
+</tr><tr>
+<td background="/img/sketch/text-left.gif"><img src="/img/sketch/text-left.gif" width=19 height=11 alt="" /></td>
+<td bgcolor="#000000">
+
+<table border=1 cellpadding=5 cellspacing=1>
+
+<!-- NAME; bgcolor=330000 for askers, 000033 for askees -->
+<tr><td bgcolor="{namecolor}">
+<b>{name}</b>
+</td></tr>
+
+<tr><td bgcolor="{color}">
+{text}
+</td></tr></table>
+
+</td>
+<td valign=top background="/img/sketch/text-right.gif"><img src="/img/sketch/text-right-fg.gif" width=37 height=26 alt="" /></td>
+</tr><tr>
+<td><img src="/img/sketch/text-bottom-left-corner.gif" width=19 height=46 alt="" /></td>
+<td background="/img/sketch/text-bottom.gif">
+
+<table width="100%" cellpadding=0 cellspacing=0 border=0><tr>
+<td><img src="/img/sketch/text-bottom-left.gif" width=34 height=46 alt="" /></td>
+<td background="/img/sketch/text-bottom.gif" width="100%"><img src="/img/sketch/text-bottom.gif" width=17 height=46 alt="" /></td>
+<td><img src="/img/sketch/text-bottom-right.gif" width=33 height=46 alt="" /></td>
+</tr></table>
+
+</td>
+<td><img src="/img/sketch/text-bottom-right-corner.gif" width=37 height=46 alt="" /></td>
+</tr>
+</table>
+</castle:template>
+
+
+<castle:template name="entryl">
+<table border=0 cellpadding=0 cellspacing=0><tr>
+<td valign=top>
+{?entry_picture}
+</td>
+
+<td valign=top>
+{?entry_text}
+</td>
+
+</tr></table>
+{userIDStr}<br>
+{buttonStr}<br>
+</castle:template>
+
+
+<castle:template name="entryr">
+<table border=0 cellpadding=0 cellspacing=0><tr>
+<td valign=top>
+{?entry_text}
+</td>
+
+<td valign=top>
+{?entry_picture}
+</td>
+</tr></table>
+{userIDStr}<br>
+{buttonStr}<br>
+</castle:template>
+
+
+<castle:template name="new_topic">
+<p align="center"><b>Start a new topic</b></p>
+
+<form method="post" action="newtopic.py" onkeypress="checkkey2()">
+Enter a subject for your question:
+<input name="subject" type="text" size="32" maxlength="32"><br>
+<br>
+Next, please elaborate on your question or discussion topic:<br>
+<textarea name="body" rows="8" cols="60" wrap="soft" onkeydown="CtrlEnterSubmit()"></textarea><br>
+
+After completing a quick proofread, click here! <input type="submit" value="Post Topic">
+<br><br>
+{page.ShowFromAskee()}
+</form>
+</castle:template>
+
+
+
+<castle:template name="javascript">
+<script>
+function CtrlEnterSubmit()
+\{
+	if (this.event)
+	\{
+		e = this.event;
+		if ((e.keyCode==13) && (e.ctrlKey==true)) e.srcElement.form.submit();
+	\}
+\}
+
+function checkkey()
+\{
+	if (!window.event) return;
+\	
+	if (window.event.keyCode == '51') window.location='deletesite.py?op=warning'
+\}
+
+function checkkey2()
+\{
+	if (!window.event) return;
+	window.event.cancelBubble = true;
+\}
+</script>
+</castle:template>
+
+
+<castle:template name="css">
+<style>
+body \{
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+\}
+</style>
+</castle:template>
+
+
+<castle:template name="copyright">
+<p align="right"><font size="-2" face="Arial">Images &copy; their respective owners. Text &copy; 1999-{currentyear} The Conversatron. For entertainment purposes only.<br>
+Theme by <b>Magenta</b>.</font></p>
+</castle:template>
+
+
+<castle:template name="body"><body {bgcolor:bgcolor="{bgcolor}"} {bgimage:background="{bgimage}"} {bodytext:text="{bodytext}"} {bodylink:link="{bodylink}"} {bodyalink:alink="{bodyalink}"} {bodyvlink:vlink="{bodyvlink}"} disabled_onkeypress="checkkey()"></castle:template>
+
+<castle:template name="standard_head">
+<html>
+<head>
+<title>{title}</title>
+
+<meta name="description" content="{meta_description}">
+<meta name="keywords" content="{meta_keywords}">
+
+{?javascript}
+{?css}
+</head>
+{?body}
+</castle:template>
+
+
+<castle:template name="index_topics_start">
+<div align='center'><font size="-1" face="Verdana, Helvetica"><b>Current Topics</b></font></div>
+
+<table cellspacing=0 cellpadding=2 border=0 width="100%">
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+</table>
+
+<div align=right>
+<a href="/archive"><font size="3" face="Georgia"><img src="/img/9arrow.gif" width="5" height="9" alt="" border="0"><b>Archives</b></font></a>
+</div>
+</castle:template>
+
+
+<castle:template name="index_date">
+<tr><td colspan=5 bgcolor="{bgcolor}"><div align='center'><font size="-1" face="Verdana, Helvetica"><b>{day}</b></font></div></td></tr>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<tr bgcolor="{indexcolor}">
+<td><a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a> {followup}</td>
+
+<td>{row.count} {star}</td>
+
+<td><font size="-1">{row.time}</font>{archive}</td>
+
+</tr>
+</castle:template>
+
+
+<castle:template name="box_start">
+<table border=0 cellpadding=0 cellspacing=0>
+<tr><td colspan=3><img src="/img/_.gif" width=1 height=5 alt="" /></td></tr>
+<tr><td><img src="/img/sketch/text-top-left.gif" width=19 height=17 alt="" /></td>
+<td background="/img/sketch/text-top.gif"><img src="/img/sketch/text-top.gif" width=2 height=17 alt="" /></td>
+<td><img src="/img/sketch/text-top-right.gif" width=37 height=17 alt="" /></td>
+</tr><tr>
+<td background="/img/sketch/text-left.gif"><img src="/img/sketch/text-left.gif" width=19 height=11 alt="" /></td>
+<td bgcolor="#000000">
+
+<table border=0 cellpadding=4 cellspacing=0 width="100%">
+<tr><td align=center><font size="4">{boxtitle}</font></td></tr>
+<tr><td bgcolor="{color}">
+</castle:template>
+
+
+<castle:template name="box_end">
+</td></tr></table>
+
+</td>
+<td valign=top background="/img/sketch/text-right.gif"><img src="/img/sketch/text-right-fg.gif" width=37 height=26 alt="" /></td>
+</tr><tr>
+<td><img src="/img/sketch/text-bottom-left-corner.gif" width=19 height=46 alt="" /></td>
+<td background="/img/sketch/text-bottom.gif">
+
+<table width="100%" cellpadding=0 cellspacing=0 border=0><tr>
+<td><img src="/img/sketch/text-bottom-left.gif" width=34 height=46 alt="" /></td>
+<td background="/img/sketch/text-bottom.gif" width="100%"><img src="/img/sketch/text-bottom.gif" width=17 height=46 alt="" /></td>
+<td><img src="/img/sketch/text-bottom-right.gif" width=33 height=46 alt="" /></td>
+</tr></table>
+
+</td>
+<td><img src="/img/sketch/text-bottom-right-corner.gif" width=37 height=46 alt="" /></td>
+</tr>
+</table>
+</castle:template>

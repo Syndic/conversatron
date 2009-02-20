@@ -1,0 +1,191 @@
+<castle:template name="index">
+{?standard_head}
+<p align="center">
+{mainlogo}<br>
+{slogan}
+<br><br>
+{theme.PrintLinks()}
+<br>
+
+{?index_topics_start}
+{theme.PrintThreads()}
+{?index_topics_end}
+
+</p>
+<hr width="80%">
+
+<br>
+
+<div align=center>{?new_topic}</div>
+
+{?copyright}
+
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="index_date">
+<tr><td colspan="5" align="center"><font size="3"><b>{day}</b></font></td></tr>
+</castle:template>
+
+
+<castle:template name="index_thread">
+<tr>
+<td>{star}</td>
+<td><font size="3"><a href="convers.py?topic={row.id}&count={row.count}">{row.subject}</a></font></td>
+<td><font size="2">Length: {row.count}</font></td>
+<td><font size="2">{row.time}{followup}{archive}</font></td>
+</tr>
+</castle:template>
+
+
+<castle:template name="index_topics_start">
+<table width="80%">
+<tr><td colspan=5 align="center"><font size="+1"><b>Current Topics:</b></font></td></tr>
+</castle:template>
+
+
+<castle:template name="index_topics_end">
+</table>
+</castle:template>
+
+
+
+
+<castle:template name="topic">
+{?standard_head}
+<a href="{minilogourl}">{minilogo}</a><br>
+
+<font size="+2">{topic_leadin:{topic_leadin}}<b>{page.thread.subject}</b></font>
+<br clear="all">
+<br>
+
+{theme.PrintThreadEntries()}
+{theme.EntryRefresh()}
+<br>
+{archindex==None:{?thread_navigation}}
+{archindex!=None:{?archive_navigation}}
+<br>
+
+{page.ShowWriterStuff()}
+
+{?copyright}
+</body>
+</html>
+</castle:template>
+
+
+<castle:template name="thread_navigation">
+<p align="center">
+<a href="convers.py?prev={page.thread.id}">{prevbutton}</a>{buttonseperator}<a href="{homepage}">{indexbutton}</a>{buttonseperator}<a href="convers.py?next={page.thread.id}">{nextbutton}</a>
+</p>
+</castle:template>
+
+
+<castle:template name="archive_navigation">
+<br>
+<p align="center"><font size=4><a href="/archive/archives{archindex}.html">Back to Archive Index</a></font></p>
+</castle:template>
+
+
+<!-- This template appears between the first post in a thread (usually an asker) and the responses -->
+
+<castle:template name="entry_responses"><font size="+2"><hr>Responses:</font><br><br></castle:template>
+
+
+<!-- Basic Entry template, used for the non-table layout -->
+<castle:template name="entry">
+{shadow:<font color="#666666">}
+{urlstart}<img src="{image}" width="80" height="100" border="0" align="{side}" hspace="5" alt="">{urlstop}
+
+<b>{name}</b> {buttonStr}<br>
+{text}<br clear="all">
+{userIDStr}
+{shadow:</font>}
+<br>{not isfirst:<hr>}<br>
+</castle:template>
+
+
+<!-- Left and Right table entry layouts -->
+<castle:template name="entryl">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td bgcolor="{entrytitlebg}">&nbsp;</td>
+<td bgcolor="{entrytitlebg}"><b><font color="#FFFFFF">{name}</font></b> {buttonStr}</td>
+</tr>
+<tr>
+<td valign="top">{urlstart}<img src="{image}" width=80 height=100 border=0 alt="">{urlstop}</td>
+<td valign="top" bgcolor="{color}"><table cellpadding=4><tr><td valign="top"><img src="/img/_.gif" width=100 height=1 alt=""><br>{text}</td></tr></table></td>
+</tr>
+</table>
+{userIDStr}<br><br>
+</castle:template>
+
+
+<castle:template name="entryr">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td bgcolor="{entrytitlebg}"><b><font color="#FFFFFF">{name}</font></b> {buttonStr}</td>
+<td bgcolor="{entrytitlebg}">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" bgcolor="{color}"><table cellpadding=4><tr><td valign="top"><img src="/img/_.gif" width=100 height=1 alt=""><br>{text}</td></tr></table></td>
+<td valign="top">{urlstart}<img src="{image}" width=80 height=100 border=0 alt="">{urlstop}</td>
+</tr>
+</table>
+{userIDStr}<br><br>
+</castle:template>
+
+
+
+<castle:template name="new_topic">
+<p align="center"><b>Start a new topic</b></p>
+
+<form method="post" action="newtopic.py" onkeypress="checkkey2()">
+Enter a subject for your question:
+<input name="subject" type="text" size="32" maxlength="32"><br>
+<br>
+Next, please elaborate on your question or discussion topic:<br>
+<textarea name="body" rows="8" cols="60" wrap="soft" onkeydown="CtrlEnterSubmit()"></textarea><br>
+
+After completing a quick proofread, click here! <input type="submit" value="Post Topic">
+<br><br>
+{page.ShowFromAskee()}
+</form>
+</castle:template>
+
+<castle:template name="copyright">
+<p align="right"><font size="-2" face="Arial">Images &copy; their respective owners. Text &copy; 1999-{currentyear} The Conversatron. For entertainment purposes only.</font></p>
+</castle:template>
+
+
+<castle:template name="body"><body {bgcolor:bgcolor="{bgcolor}"} {bgimage:background="{bgimage}"} {bodytext:text="{bodytext}"} {bodylink:link="{bodylink}"} {bodyalink:alink="{bodyalink}"} {bodyvlink:vlink="{bodyvlink}"} {onload:onload="{onload}"}></castle:template>
+
+<castle:template name="standard_head">
+<html>
+<head>
+<title>{title}</title>
+<link rel="stylesheet" href="/conversatron.css" type="text/css" />
+<script src="/request2.js"></script>
+<script src="/display.js"></script>
+<script src="/effects.js"></script>
+<script src="/fade.js"></script>
+<script src="/conversatron.js"></script>{javascript:{javascript}}
+<meta name="description" content="{meta_description}">
+<meta name="keywords" content="{meta_keywords}">
+<link rel="alternate" type="application/rss+xml" title="RSS Autodiscovery" href="http://conversatron.com/syndicate/conversatron.py?.xml" />
+{theme.PrintHeadLinks()}
+</head>
+{?body}
+</castle:template>
+
+<castle:template name="inline-sign-in">
+<div id="login_form" class="sign-in" style="display:none;">
+<form method="post" action="/account/signin.py">
+Name: <input type="text" name="name" size=12 maxlength=12>
+Password: <input type="password" name="passwd" size=12 maxlength=12>
+<input type="submit" name="sign-in-button" value="Sign In"> <button name="cancel-button" onclick="return hideSignIn()" class="action">Cancel</button>
+</form>
+</div>
+</castle:template>

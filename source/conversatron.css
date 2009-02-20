@@ -1,0 +1,42 @@
+.sign-in, .find-askee {
+	font-size:10pt;
+}
+	
+.sign-in form {
+	margin: 0px;
+	padding: 0px;
+}
+	
+.sign-in input, .find-askee input {
+    font: normal 11px Verdana,Arial,Helvetica,sans-serif;
+    padding: 1px;
+    border: 1px solid #0080CC;
+    color: #333;
+    background-color: #FFF;
+}
+
+div.message {
+	background-color: #369;
+	padding: 5px;
+	margin: 5px;
+	text-align: center;
+}
+
+/* Secondary form buttons */	
+button.action, input.action {
+    font: normal 11px Verdana,Arial,Helvetica,sans-serif;
+    padding: 1px;
+    border: 1px solid #0080CC;
+    color: #333;
+    cursor: pointer;
+    background: #FFF;
+}
+
+button[disabled], input[disabled] {
+	background: #ccc;
+}
+
+img.spinner {
+	background: #9cf;
+	border: 1px #369 dotted;
+}
